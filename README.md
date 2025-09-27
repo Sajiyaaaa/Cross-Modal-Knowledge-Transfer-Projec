@@ -67,6 +67,34 @@ Place dataset files in data/ or mount /content/drive/MyDrive/STData/STData/ for 
 
 Ensure PSY.csv is available for target encoding.
 
+Usage:
+
+Run the notebooks sequentially in Jupyter/Colab:
+
+01_preprocessing.ipynb:
+
+Load data, extract features (EEG frequency bands, Eye summaries, GSR slopes, TIVA AUs), normalize with z-score, apply PCA (10 components per modality), and save preprocessed_trials.csv.
+
+02_baseline_single_modality.ipynb:
+
+Train XGBoost baselines on each modality and evaluate F1-score, Accuracy, ROC-AUC.
+
+03_teacher_student_transfer.ipynb:
+
+Train EEG teacher, then distill knowledge to student models (Eye, GSR, Facial) using soft labels.
+
+04_domain_adaptation.ipynb:
+
+Implement adversarial adaptation with gradient reversal for domain-invariant features.
+
+05_contrastive_learning.ipynb:
+
+Use NT-Xent loss for shared embedding space across modalities.
+
+Example Command (Colab):
+
+Open each notebook and run all cells. Outputs include saved models, metrics CSVs, and plots.
+
 Key Hyperparameters:
 
 1.XGBoost: random_state=42, scale_pos_weight for imbalance.
